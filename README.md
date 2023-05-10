@@ -17,6 +17,6 @@ Style app using TailwindCSS utility classes.
   
  # Run App
   
-  (code)[]
+  (code)[https://github.com/houseofpython/cookie-stand-admin/tree/2c66dd8f47c5eebf42dac69de2a5dafd725d94b3/cookie-stand-admin]
   
   npm start dev
