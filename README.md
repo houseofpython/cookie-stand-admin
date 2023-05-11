@@ -15,6 +15,10 @@ Style app using TailwindCSS utility classes.
   
  It took 1 hour to finish this assignment. I expected it to take 1 hour. 
   
+ New feature to render table data and take in user input for store location,.s
+  
+  IT took 3 hours , thought it would take an hour. 
+  
  # Run App
   
   -[code](https://github.com/houseofpython/cookie-stand-admin/tree/2c66dd8f47c5eebf42dac69de2a5dafd725d94b3/cookie-stand-admin)
