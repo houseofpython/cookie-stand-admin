@@ -7,6 +7,7 @@ const AuthContext = createContext();
 
 export function useAuth() {
     const auth = useContext(AuthContext);
+    console.log('auth is here', auth)
     if (!auth) {
         throw new Error('You forgot AuthProvider!');
     }
@@ -23,6 +24,8 @@ export function AuthProvider(props) {
     });
 
     async function login(username, password) {
+    console.log(tokenUrl)
+    console.log('inside of the login function')
 
         const options = {
             method: "POST",
@@ -35,6 +38,7 @@ export function AuthProvider(props) {
         const data = await response.json();
 
         const decodedAccess = jwt.decode(data.access);
+
 
         const newState = {
             tokens: data,
