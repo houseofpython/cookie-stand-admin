@@ -36,7 +36,7 @@ export default function Report({locationsList, hours}) {
                             <td className="">{cookie_sales}</td>
 
                             )}
-                          <button className="bg-green-700" type="submit" onClick="">Delete</button>
+                          <button className="bg-green-700" type="submit" onClick="{}">Delete</button>
                         </tr>
                         )}
                      </tbody>
