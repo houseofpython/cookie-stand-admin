@@ -1,70 +1,50 @@
-
-import React from 'react';
-import useResource from "@/hooks/useResource";
+import react from 'react'
 
 export default function Report({ locationsList, hours }) {
-  const { createResource, resources, deleteResource } = useResource();
-
-
-
-
   function getStoreList() {
     if (locationsList.length === 0) {
       return (
-        <p className="px-2 py-1 text-black text-center">No Cookies Stands Available</p>
+        <p className="px-2 py-1 text-center text-black">No Cookies Stands Available</p>
       );
-    } else {
-      return <Table hours={hours} locationsList={locationsList} />;
+    }
+    else {
+      return <Table hours={hours} locationsList={locationsList} />
     }
   }
-
-  function handleDelete(id) {
-    console.log('id',id)
-    deleteResource(id);
-  }
-
+  return (
+    <>
+      {getStoreList()}
+    </>
+  )
   function Table({ locationsList, hours }) {
-    console.log('location loc',location.location)
-    console.log('location',location)
-    console.log('locationList',locationsList)
-    console.log('backend data', resources)
+    console.log('storerender', locationsList, hours)
     return (
-      <table className="self-center w-3/4 m-auto text-black bg-green-500 border-black rounded-lg border-separate">
+      <table className="self-center w-3/4 m-auto text-black bg-green-500 border-black rounded-lg border-seperate">
         <thead>
           <tr>
-            {hours.map((hour) => (
-              <th key={hour} className="">
-                {hour}
-              </th>
-            ))}
+            {hours.map(hour =>
+
+              <th key={hour} className="">{hour}</th>
+            )}
           </tr>
         </thead>
-        <tbody className="self-center w-3/4 m-auto text-black bg-green-500 border-black rounded-lg border-separate">
-          {locationsList.map((location) => (
-            <tr key={location.id}>
+        <tbody className="self-center w-3/4 m-auto text-black bg-green-500 border-black rounded-lg border-seperate">
+          {locationsList.map(location =>
+            <tr key={location.location}>
               <td className="">{location.location}</td>
-              {location.hourly_sales.map((cookie_sales, index) => (
-                <td key={index} className="">
-                  {cookie_sales}
-                </td>
-              ))}
-              <td>
-                <button
-                  className="bg-green-700"
-                  type="submit"
-                  onClick={() => handleDelete(resources)}
-                >Delete</button>
-              </td>
+              {location.hourly_sales.map((cookie_sales, index) =>
+                <td key={index} className="">{cookie_sales}</td>
+
+              )}
+              <button className="bg-green-700" type="submit" onClick="{}">Delete</button>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
-    );
+
+    )
   }
 
-  return <>{getStoreList()}</>;
 }
-
-
 
 
