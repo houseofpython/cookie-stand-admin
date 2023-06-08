@@ -2,8 +2,11 @@ import react from 'react'
 import CreateForm from './createform.js';
 import Report from './report.js'
 import React, { useState } from 'react';
+import useResource from "@/hooks/useResource";
+import { useAuth } from '../contexts/auth.js'
 
 export default function Main() {
+  const { createResource } = useResource();
 
   const [locationsList, setLocation] = useState([]);
   const hours = [
@@ -22,34 +25,36 @@ export default function Main() {
     '5pm',
     '6pm',
     '7pm',
-    ]
-    const handleSubmit = (e) => {
+  ]
+
+  const { user } = useAuth();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-
     const newReport = {
-      location : e.target.location.value,
-      minCustomers : e.target.minCustomers.value,
-      maxCustomers : e.target.maxCustomers.value,
-      avgCookies: e.target.avgCookies.value,
-      hourly_sales: [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36],
+      location: e.target.location.value,
+      minimum_customers_per_hour: parseInt(e.target.minCustomers.value),
+      maximum_customers_per_hour: parseInt(e.target.maxCustomers.value),
+      average_cookies_per_sale: parseFloat(e.target.avgCookies.value),
+      owner: user.id,
     };
-
-
+    createResource(newReport);
     setLocation([...locationsList, newReport])
-  };
-    console.log('stores', locationsList)
+  }
 
-    return(
-        <>
-            <CreateForm
-            locationsList={locationsList}
-            handleSubmit={handleSubmit}
-            />
-            <Report
-            locationsList={locationsList}
-            hours={hours}
-            />
-        </>
-   )
+    
+
+  return (
+    <>
+      <CreateForm
+        locationsList={locationsList}
+        handleSubmit={handleSubmit}
+      />
+      <Report
+        locationsList={locationsList}
+        hours={hours}
+      />
+    </>
+  )
 }
 
